@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserDto extends AbstractDto implements Identifable {
+public class UserDto extends AbstractDto implements Identifiable {
     private String username;
     private String email;
     private String password;

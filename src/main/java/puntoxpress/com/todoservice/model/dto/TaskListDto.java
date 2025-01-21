@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskListDto extends AbstractDto implements Identifable {
+public class TaskListDto extends AbstractDto implements Identifiable {
     private String name;
     private String description;
     private LocalDateTime createdAt;

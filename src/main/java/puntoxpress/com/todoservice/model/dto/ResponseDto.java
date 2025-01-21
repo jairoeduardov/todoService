@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class ResponseDto<T extends Identifable> {
+public class ResponseDto<T extends Identifiable> {
     private T data;
     private List<Error> errors;
 }

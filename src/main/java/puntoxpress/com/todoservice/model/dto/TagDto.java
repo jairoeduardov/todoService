@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TagDto extends AbstractDto implements Identifable {
+public class TagDto extends AbstractDto implements Identifiable {
     private String name;
     private String color;
     private UserDto user;

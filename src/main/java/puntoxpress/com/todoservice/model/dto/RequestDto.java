@@ -1,5 +1,10 @@
 package puntoxpress.com.todoservice.model.dto;
 
-public class RequestDto <T extends Identifable>{
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class RequestDto <T extends Identifiable>{
     private T data;
 }

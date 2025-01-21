@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TaskDto extends AbstractDto implements Identifable {
+public class TaskDto extends AbstractDto implements Identifiable {
     private String title;
     private String description;
     private TaskStatus status;

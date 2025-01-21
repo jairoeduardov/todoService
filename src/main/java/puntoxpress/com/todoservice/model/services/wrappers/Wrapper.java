@@ -9,10 +9,11 @@ import puntoxpress.com.todoservice.model.entities.AbstractEntity;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-public class Wapper <T extends AbstractEntity, D extends Identifable> {
+public class Wrapper<T extends AbstractEntity, D extends Identifiable> {
     private RequestDto<D> request;
     private ResponseDto<D> response;
     private T entity;
     private D dto;
     private ResponseListDto<D> responseList;
+    private String uuid;
 }
