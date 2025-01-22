@@ -1,17 +1,18 @@
 package puntoxpress.com.todoservice.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import puntoxpress.com.todoservice.model.enums.TaskPriority;
 import puntoxpress.com.todoservice.model.enums.TaskStatus;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
+@EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
@@ -21,8 +22,14 @@ public class Task extends AbstractEntity {
     private TaskStatus status;
     private TaskPriority priority;
     private LocalDateTime dueDate;
+    @Column(name = "created_at", updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
-    private LocalDate updatedAt;
+    @Column(name = "updated_at")
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TaskList taskList;
 }

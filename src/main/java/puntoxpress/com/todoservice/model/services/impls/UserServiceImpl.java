@@ -20,17 +20,14 @@ public class UserServiceImpl  implements UserService {
 
     private final UserChainFactory chainFactory;
 
-
     private Wrapper<User, UserDto> createWrapper(){
         return new Wrapper<User, UserDto>();
     }
 
     @Override
-    public ResponseDto<UserDto> add(RequestDto<UserBaseDto> request) throws Exception {
+    public ResponseDto<UserDto> add(RequestDto<UserDto> request) throws Exception {
         log.info("Creating category: {}", request);
         Wrapper<User, UserDto> wrapper = createWrapper();
-        User user = UserMapper.INSTANCE.UserBaseDtoToUser(request.getData());
-        wrapper.setEntity(user);
         for(Strategy<User, UserDto> strategy : this.chainFactory.get(MethodType.CREATE)){
             strategy.perform(wrapper);
         }

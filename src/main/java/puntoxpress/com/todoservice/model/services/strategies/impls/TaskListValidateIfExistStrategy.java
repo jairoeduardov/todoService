@@ -41,5 +41,6 @@ public class TaskListValidateIfExistStrategy extends AbstractStrategy<TaskList, 
                         )
                 )
         );
+        wrapper.setEntity(entity);
     }
 }

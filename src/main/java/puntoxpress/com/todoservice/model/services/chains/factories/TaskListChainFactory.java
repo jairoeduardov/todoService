@@ -32,6 +32,7 @@ public class TaskListChainFactory implements Factory<Strategy<TaskList, TaskList
                     this.strategies.getRetrieve()
             };
             case DELETE -> new Strategy[]{
+                    this.strategies.getValidateIfExist(),
                     this.strategies.getDelete()
             };
             case UPDATE -> new Strategy[]{

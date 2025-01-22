@@ -5,4 +5,4 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserBaseDto extends AbstractDto implements Identifiable {}
+public class TaskListBaseDto extends AbstractDto implements Identifiable {}

@@ -31,6 +31,7 @@ public class TaskTagChainFactory implements Factory<Strategy<TaskTag, TaskTagDto
                     this.strategies.getRetrieve()
             };
             case DELETE -> new Strategy[]{
+                    this.strategies.getValidateIfExist(),
                     this.strategies.getDelete()
             };
             case UPDATE -> new Strategy[]{

@@ -7,11 +7,13 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 public class User extends AbstractEntity {

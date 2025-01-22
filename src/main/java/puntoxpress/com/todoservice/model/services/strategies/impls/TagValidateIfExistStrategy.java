@@ -31,6 +31,7 @@ public class TagValidateIfExistStrategy extends AbstractStrategy<Tag, TagDto> im
                     )
             );
         }
+
         uuid = wrapper.getUuid();
         Tag entity = repository.findByUuid(uuid).orElseThrow(
                 () -> new GeneralResponseException(
@@ -41,5 +42,6 @@ public class TagValidateIfExistStrategy extends AbstractStrategy<Tag, TagDto> im
                         )
                 )
         );
+        wrapper.setEntity(entity);
     }
 }

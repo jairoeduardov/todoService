@@ -19,7 +19,7 @@ public class UserCreateStrategy extends AbstractStrategy<User, UserDto> implemen
 
     @Override
     public void perform(Wrapper<User, UserDto> wrapper) throws Exception {
-
+        User user = UserMapper.INSTANCE.userDtoToUser(wrapper.getRequest().getData());
         User entity = repository.save(wrapper.getEntity());
         wrapper.setResponse(createResponse(wrapper, UserMapper.INSTANCE.userToUserDto(entity)));
     }

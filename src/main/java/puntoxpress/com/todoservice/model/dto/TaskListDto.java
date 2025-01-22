@@ -15,6 +15,5 @@ public class TaskListDto extends AbstractDto implements Identifiable {
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    @ManyToOne(fetch = FetchType.LAZY)
     private UserDto user;
 }

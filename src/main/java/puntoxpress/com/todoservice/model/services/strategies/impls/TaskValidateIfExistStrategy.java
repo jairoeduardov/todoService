@@ -41,5 +41,6 @@ public class TaskValidateIfExistStrategy extends AbstractStrategy<Task, TaskDto>
                         )
                 )
         );
+        wrapper.setEntity(entity);
     }
 }

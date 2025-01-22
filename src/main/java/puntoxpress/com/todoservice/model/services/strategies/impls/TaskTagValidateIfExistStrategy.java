@@ -41,5 +41,6 @@ public class TaskTagValidateIfExistStrategy extends AbstractStrategy<TaskTag, Ta
                         )
                 )
         );
+        wrapper.setEntity(entity);
     }
 }

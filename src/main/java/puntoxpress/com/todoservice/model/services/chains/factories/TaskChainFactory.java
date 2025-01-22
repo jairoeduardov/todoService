@@ -33,6 +33,7 @@ public class TaskChainFactory implements Factory<Strategy<Task, TaskDto>[], Meth
                     this.strategies.getRetrieve()
             };
             case DELETE -> new Strategy[]{
+                    this.strategies.getValidateIfExist(),
                     this.strategies.getDelete()
             };
             case UPDATE -> new Strategy[]{

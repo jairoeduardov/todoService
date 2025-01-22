@@ -59,6 +59,7 @@ public class TaskServiceImpl implements TaskService {
         log.info("Creating category: {}", request);
         Wrapper<Task, TaskDto> wrapper = createWrapper();
         wrapper.setRequest(request);
+        wrapper.setUuid(uuid);
         for(Strategy<Task, TaskDto> strategy : this.chainFactory.get(MethodType.UPDATE)){
             strategy.perform(wrapper);
         }

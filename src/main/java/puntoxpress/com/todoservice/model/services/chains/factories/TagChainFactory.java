@@ -31,6 +31,7 @@ public class TagChainFactory implements Factory<Strategy<Tag, TagDto>[], MethodT
                     this.strategies.getRetrieve()
             };
             case DELETE -> new Strategy[]{
+                    this.strategies.getValidateIfExist(),
                     this.strategies.getDelete()
             };
             case UPDATE -> new Strategy[]{
