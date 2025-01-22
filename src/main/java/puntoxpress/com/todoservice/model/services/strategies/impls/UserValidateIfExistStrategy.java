@@ -41,5 +41,6 @@ public class UserValidateIfExistStrategy extends AbstractStrategy<User, UserDto>
                         )
                 )
         );
+        wrapper.setEntity(entity);
     }
 }

@@ -23,7 +23,7 @@ public class TagController {
     @PostMapping
     public ResponseEntity<ResponseDto<TagDto>> create(@Valid @RequestBody RequestDto<TagDto> request) throws Exception {
         log.info("request - post: {}", request );
-        return new ResponseEntity<>(service.add(request), HttpStatus.OK);
+        return null;//new ResponseEntity<>(service.add(request), HttpStatus.OK);
     }
 
     @GetMapping("/{uuid}")
@@ -40,7 +40,7 @@ public class TagController {
     @PutMapping("/{uuid}")
     public ResponseEntity<ResponseDto<TagDto>> update(@Valid @RequestBody RequestDto<TagDto> request, @PathVariable String uuid) throws Exception {
         log.info("request - update: {}", request );
-        return new ResponseEntity<>(service.update(request, uuid), HttpStatus.OK);
+        return null;//new ResponseEntity<>(service.update(request, uuid), HttpStatus.OK);
     }
 
     @DeleteMapping("/{uuid}")
