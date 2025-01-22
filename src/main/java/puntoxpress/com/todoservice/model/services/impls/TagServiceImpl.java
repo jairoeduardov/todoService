@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import puntoxpress.com.todoservice.model.dto.RequestDto;
 import puntoxpress.com.todoservice.model.dto.ResponseDto;
+import puntoxpress.com.todoservice.model.dto.ResponseListDto;
 import puntoxpress.com.todoservice.model.dto.TagDto;
 import puntoxpress.com.todoservice.model.entities.Tag;
 import puntoxpress.com.todoservice.model.enums.MethodType;
@@ -43,14 +44,14 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public ResponseDto<TagDto> getAll() throws Exception {
+    public ResponseListDto<TagDto> getAll() throws Exception {
         //log.info("Creating category: {}", uuid);
         Wrapper<Tag, TagDto> wrapper = createWrapper();
         //wrapper.setUuid(uuid);
         for(Strategy<Tag, TagDto> strategy : this.chainFactory.get(MethodType.ALL)){
             strategy.perform(wrapper);
         }
-        return wrapper.getResponse();
+        return wrapper.getResponseList();
     }
 
     @Override
