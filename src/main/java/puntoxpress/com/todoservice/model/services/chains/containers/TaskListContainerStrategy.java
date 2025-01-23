@@ -15,5 +15,6 @@ public class TaskListContainerStrategy {
     private final TaskListUpdateStrategy update;
     private final TaskListRetrieveAllStrategy retrieveAll;
     private final TaskListRetrieveStrategy retrieve;
+    private final TaskListValidateIfHasChildStrategy validateIfHasChild;
 
 }

@@ -1,5 +1,6 @@
 package puntoxpress.com.todoservice.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import puntoxpress.com.todoservice.model.services.UserService;
 
 @Slf4j
 @RestController
+@Tag(name = "Usuarios", description = "APIs relacionadas usuarios")
 @RequestMapping("/v1/users")
 @RequiredArgsConstructor
 public class UserController {

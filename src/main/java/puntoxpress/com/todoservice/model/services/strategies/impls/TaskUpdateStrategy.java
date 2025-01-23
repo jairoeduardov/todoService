@@ -6,11 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import puntoxpress.com.todoservice.model.dto.TaskDto;
 import puntoxpress.com.todoservice.model.entities.Task;
-import puntoxpress.com.todoservice.model.entities.User;
+import puntoxpress.com.todoservice.model.entities.TaskList;
 import puntoxpress.com.todoservice.model.exceptions.GeneralResponseException;
 import puntoxpress.com.todoservice.model.mappers.TaskMapper;
+import puntoxpress.com.todoservice.model.repositories.TaskListRepository;
 import puntoxpress.com.todoservice.model.repositories.TaskRepository;
-import puntoxpress.com.todoservice.model.repositories.UserRepository;
 import puntoxpress.com.todoservice.model.services.strategies.Strategy;
 import puntoxpress.com.todoservice.model.services.wrappers.Wrapper;
 
@@ -21,32 +21,35 @@ public class TaskUpdateStrategy  extends AbstractStrategy<Task, TaskDto> impleme
 
     private final TaskRepository repository;
     private final TaskMapper taskMapper;
-    private final UserRepository userRepository;
+    private final TaskListRepository taskListRepository;
 
     @Override
     public void perform(Wrapper<Task, TaskDto> wrapper) throws Exception {
         Task task = wrapper.getEntity();
 
 
-        if (wrapper.getRequest().getData().getUser() == null || wrapper.getRequest().getData().getUser().getUuid() == null)
+
+        if (wrapper.getRequest().getData().getTaskList() == null || wrapper.getRequest().getData().getTaskList().getUuid() == null)
             throw new GeneralResponseException(
                     generalErrorResponse(
                             HttpStatus.NOT_FOUND,
-                            "User is empty",
-                            "User is empty"
+                            "TaskList is empty",
+                            "TaskList is empty"
                     )
             );
 
-        User user = userRepository.findByUuid(wrapper.getRequest().getData().getUser().getUuid()).orElseThrow(
+
+        TaskList taskList = taskListRepository.findByUuid(wrapper.getRequest().getData().getTaskList().getUuid()).orElseThrow(
                 () -> new GeneralResponseException(
                         generalErrorResponse(
                                 HttpStatus.NOT_FOUND,
-                                "User not found",
-                                "User not found"
+                                "TaskList not found",
+                                "TaskList not found"
                         )
                 )
         );
-        task.setUser(user);
+
+        task.setTaskList(taskList);
         taskMapper.updateTaskFromDto(wrapper.getRequest().getData(), task);
         Task entity = repository.save(task);
         wrapper.setResponse(createResponse(wrapper, TaskMapper.INSTANCE.taskToTaskDto(entity)));

@@ -22,7 +22,7 @@ public class UserRetrieveAllStrategy extends AbstractStrategy<User, UserDto> imp
     @Override
     public void perform(Wrapper<User, UserDto> wrapper) throws Exception {
         List<User> entities = repository.findAll();
-        checkEntitiesNotEmpty(entities, wrapper, "No price list found");
+        checkEntitiesNotEmpty(entities, wrapper, "No entities found");
         wrapper.setResponseList(createResponseList(wrapper, UserMapper.INSTANCE.usersToUserDtos(entities)));
     }
 }

@@ -3,13 +3,12 @@ package puntoxpress.com.todoservice.model.services.impls;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import puntoxpress.com.todoservice.model.dto.RequestDto;
-import puntoxpress.com.todoservice.model.dto.ResponseDto;
-import puntoxpress.com.todoservice.model.dto.ResponseListDto;
-import puntoxpress.com.todoservice.model.dto.TaskListDto;
+import puntoxpress.com.todoservice.model.dto.*;
+import puntoxpress.com.todoservice.model.entities.Task;
 import puntoxpress.com.todoservice.model.entities.TaskList;
 import puntoxpress.com.todoservice.model.enums.MethodType;
 import puntoxpress.com.todoservice.model.services.TaskListService;
+import puntoxpress.com.todoservice.model.services.chains.factories.TaskChainFactory;
 import puntoxpress.com.todoservice.model.services.chains.factories.TaskListChainFactory;
 import puntoxpress.com.todoservice.model.services.strategies.Strategy;
 import puntoxpress.com.todoservice.model.services.wrappers.Wrapper;
@@ -20,6 +19,7 @@ import puntoxpress.com.todoservice.model.services.wrappers.Wrapper;
 public class TaskListServiceImpl implements TaskListService {
 
     private final TaskListChainFactory chainFactory;
+    private final TaskChainFactory taskChainFactory;
 
     @Override
     public ResponseDto<TaskListDto> add(RequestDto<TaskListDto> request) throws Exception {
@@ -41,6 +41,17 @@ public class TaskListServiceImpl implements TaskListService {
             strategy.perform(wrapper);
         }
         return wrapper.getResponse();
+    }
+
+    @Override
+    public ResponseListDto<TaskDto> getTaskByTaskListUuid(String uuid) throws Exception {
+        log.info("Creating category: {}", uuid);
+        Wrapper<Task, TaskDto> wrapper = new Wrapper<>();
+        wrapper.setUuid(uuid);
+        for(Strategy<Task, TaskDto> strategy : this.taskChainFactory.get(MethodType.RETRIEVE_CHILDRENS)){
+            strategy.perform(wrapper);
+        }
+        return wrapper.getResponseList();
     }
 
     @Override

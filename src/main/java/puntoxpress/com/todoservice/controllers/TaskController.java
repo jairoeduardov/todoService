@@ -1,5 +1,6 @@
 package puntoxpress.com.todoservice.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import puntoxpress.com.todoservice.model.services.TaskService;
 
 @Slf4j
 @RestController
+@Tag(name = "Tareas", description = "API relacionado a las tareas de una lista de tareas")
 @RequestMapping("/v1/tasks")
 @RequiredArgsConstructor
 public class TaskController {

@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "task_list_id"})
+)
 public class Task extends AbstractEntity {
     private String title;
     private String description;
@@ -28,8 +31,6 @@ public class Task extends AbstractEntity {
     @Column(name = "updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     private TaskList taskList;
 }

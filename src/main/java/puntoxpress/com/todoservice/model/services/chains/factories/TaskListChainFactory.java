@@ -33,6 +33,7 @@ public class TaskListChainFactory implements Factory<Strategy<TaskList, TaskList
             };
             case DELETE -> new Strategy[]{
                     this.strategies.getValidateIfExist(),
+                    this.strategies.getValidateIfHasChild(),
                     this.strategies.getDelete()
             };
             case UPDATE -> new Strategy[]{

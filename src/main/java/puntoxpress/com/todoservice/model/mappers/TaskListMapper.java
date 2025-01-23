@@ -8,7 +8,7 @@ import puntoxpress.com.todoservice.model.entities.TaskList;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface TaskListMapper {
     TaskListMapper INSTANCE = Mappers.getMapper(TaskListMapper.class);
     

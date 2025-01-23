@@ -16,6 +16,5 @@ public class TaskDto extends AbstractDto implements Identifiable {
     private TaskStatus status;
     private TaskPriority priority;
     private LocalDateTime dueDate;
-    private UserBaseDto user;
     private TaskListBaseDto taskList;
 }

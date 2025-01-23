@@ -13,7 +13,5 @@ import java.time.LocalDateTime;
 public class TaskListDto extends AbstractDto implements Identifiable {
     private String name;
     private String description;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private UserDto user;
+    private UserBaseDto user;
 }

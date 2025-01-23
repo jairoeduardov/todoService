@@ -11,5 +11,6 @@ public enum MethodType{
     UPDATE,
     DELETE,
     RETRIEVE,
-    ALL
+    ALL,
+    RETRIEVE_CHILDRENS
 }

@@ -15,4 +15,5 @@ public class TaskContainerStrategy {
     private final TaskUpdateStrategy update;
     private final TaskRetrieveAllStrategy retrieveAll;
     private final TaskRetrieveStrategy retrieve;
+    private final TaskRetrieveByTaskListUuid retrieveByTaskListUuid;
 }

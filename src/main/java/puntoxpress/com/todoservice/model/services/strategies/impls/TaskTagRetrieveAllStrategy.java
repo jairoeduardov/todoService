@@ -22,7 +22,7 @@ public class TaskTagRetrieveAllStrategy extends AbstractStrategy<TaskTag, TaskTa
     @Override
     public void perform(Wrapper<TaskTag, TaskTagDto> wrapper) throws Exception {
         List<TaskTag> entities = repository.findAll();
-        checkEntitiesNotEmpty(entities, wrapper, "No price list found");
+        checkEntitiesNotEmpty(entities, wrapper, "No entities found");
         wrapper.setResponseList(createResponseList(wrapper, TaskTagMapper.INSTANCE.taskTagsToTaskTagDtos(entities)));
     }
 }

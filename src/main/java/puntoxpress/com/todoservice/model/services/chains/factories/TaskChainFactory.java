@@ -21,7 +21,7 @@ public class TaskChainFactory implements Factory<Strategy<Task, TaskDto>[], Meth
 
     @Override
     public Strategy<Task, TaskDto>[] get(MethodType methodType) {
-        return switch (methodType){
+        return switch (methodType) {
             case CREATE -> new Strategy[]{
                     this.strategies.getCreate()
             };
@@ -31,6 +31,9 @@ public class TaskChainFactory implements Factory<Strategy<Task, TaskDto>[], Meth
             case RETRIEVE -> new Strategy[]{
                     this.strategies.getValidateIfExist(),
                     this.strategies.getRetrieve()
+            };
+            case RETRIEVE_CHILDRENS -> new Strategy[]{
+                    this.strategies.getRetrieveByTaskListUuid()
             };
             case DELETE -> new Strategy[]{
                     this.strategies.getValidateIfExist(),
