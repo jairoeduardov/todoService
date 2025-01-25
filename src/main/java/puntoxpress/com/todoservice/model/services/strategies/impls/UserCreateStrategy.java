@@ -16,11 +16,12 @@ import puntoxpress.com.todoservice.model.services.wrappers.Wrapper;
 public class UserCreateStrategy extends AbstractStrategy<User, UserDto> implements Strategy<User, UserDto> {
 
     private final UserRepository repository;
+    private final UserMapper userMapper;
 
     @Override
     public void perform(Wrapper<User, UserDto> wrapper) throws Exception {
-        User user = UserMapper.INSTANCE.userDtoToUser(wrapper.getRequest().getData());
-        User entity = repository.save(wrapper.getEntity());
-        wrapper.setResponse(createResponse(wrapper, UserMapper.INSTANCE.userToUserDto(entity)));
+        User user = userMapper.userDtoToUser(wrapper.getRequest().getData());
+        User entity = repository.save(user);
+        wrapper.setResponse(createResponse(wrapper, userMapper.userToUserDto(entity)));
     }
 }

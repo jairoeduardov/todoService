@@ -31,12 +31,7 @@ public class TaskListController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<ResponseDto<TaskListDto>> get(Authentication authentication, @PathVariable String uuid) throws Exception {
-        OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
-        String email = oauth2User.getAttribute("email");
-        log.info("user email: {}", email);
-        log.info("request - get: {}", uuid );
-
+    public ResponseEntity<ResponseDto<TaskListDto>> get(@PathVariable String uuid) throws Exception {
         return new ResponseEntity<>(service.get(uuid), HttpStatus.OK);
     }
 

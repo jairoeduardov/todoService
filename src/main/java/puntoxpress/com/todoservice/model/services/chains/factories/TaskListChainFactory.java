@@ -40,6 +40,9 @@ public class TaskListChainFactory implements Factory<Strategy<TaskList, TaskList
                     this.strategies.getValidateIfExist(),
                     this.strategies.getUpdate()
             };
+            case RETRIEVE_BY_USER -> new Strategy[]{
+                    this.strategies.getRetrieveByUser()
+            };
             default -> new Strategy[]{};
         };
     }
