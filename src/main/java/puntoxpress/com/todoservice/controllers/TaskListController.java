@@ -21,10 +21,7 @@ public class TaskListController {
     private final TaskListService service;
 
     @PostMapping
-    public ResponseEntity<ResponseDto<TaskListDto>> create(Authentication authentication, @Valid @RequestBody RequestDto<TaskListDto> request) throws Exception {
-        OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
-        String email = oauth2User.getAttribute("email");
-        log.info("user email: {}", email);
+    public ResponseEntity<ResponseDto<TaskListDto>> create( @Valid @RequestBody RequestDto<TaskListDto> request) throws Exception {
         log.info("request - post: {}", request );
 
         return new ResponseEntity<>(service.add(request), HttpStatus.OK);

@@ -13,6 +13,7 @@ import puntoxpress.com.todoservice.model.repositories.TaskRepository;
 import puntoxpress.com.todoservice.model.services.strategies.Strategy;
 import puntoxpress.com.todoservice.model.services.wrappers.Wrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -27,17 +28,18 @@ public class TaskListRetrieveByUserAllStrategy extends AbstractStrategy<TaskList
 
     @Override
     public void perform(Wrapper<TaskList, TaskListDto> wrapper) throws Exception {
+        List<TaskListDto> taskListDtos = new ArrayList<>();
         List<TaskList> taskLists = repository.findByUserUuid(wrapper.getUuid());
-        checkEntitiesNotEmpty(taskLists, wrapper, "No entities found");
-        List<TaskListDto> taskListDtos =  taskListMapper.taskListsToTaskListDtos(taskLists);
-
-
-        taskListDtos.forEach(taskListDto -> {
-            // Obtener las tareas asociadas a la lista de tareas actual
-            List<Task> tasks = taskRepository.findByTaskListUuid(taskListDto.getUuid());
-            // Actualizar las tareas en la lista de tareas
-            taskListDto.setTasks(taskMapper.tasksToTaskDtos(tasks));
-        });
+        //checkEntitiesNotEmpty(taskLists, wrapper, "No entities found");
+        if (!taskLists.isEmpty()){
+            taskListDtos =  taskListMapper.taskListsToTaskListDtos(taskLists);
+            taskListDtos.forEach(taskListDto -> {
+                // Obtener las tareas asociadas a la lista de tareas actual
+                List<Task> tasks = taskRepository.findByTaskListUuid(taskListDto.getUuid());
+                // Actualizar las tareas en la lista de tareas
+                taskListDto.setTasks(taskMapper.tasksToTaskDtos(tasks));
+            });
+        }
 
         wrapper.setResponseList(createResponseList(wrapper, taskListDtos));
 
